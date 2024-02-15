@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>fetching data from api</h1>
+    <ul id="productList"></ul>
+    <script>
+        const apiUrl = 'https://localhost:3009/';
+    
+        fetch(apiUrl)
+          .then(response => response.json())
+          .then(products => {
+          
+            const productListContainer = document.getElementById('productList');
+             console.log(products)
+            products.forEach(product => {
+              const l= document.createElement('li');
+              l.innerHTML =product.id
+              const l1=document.createElement('li')
+               l1.innerHTML=product.title        
+              productListContainer.appendChild(l);
+              productListContainer.appendChild(l1) 
+              const l2=document.createElement("li")
+              l2.innerHTML= product.price
+              productListContainer.appendChild(l2)
+              
+          
+            });
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      </script>
+    
+</body>
+</html>
